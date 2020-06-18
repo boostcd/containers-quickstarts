@@ -27,4 +27,9 @@ ENV BASH_ENV=/usr/share/container-scripts/scl_enable \
     ENV=/usr/share/container-scripts/scl_enable \
     PROMPT_COMMAND="./usr/share/container-scripts/scl_enable"
 
+ARG VERSION=4.3.7
+ARG WEB_VERSION=202003130552.git.0.aa10b5b.el7
+
+RUN curl -sLo- https://mirror.openshift.com/pub/openshift-v4/clients/oc/${VERSION}-${WEB_VERSION}/linux/oc.tar.gz | tar xvz -C /usr/bin
+
 USER 1001
