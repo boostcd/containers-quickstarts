@@ -18,6 +18,9 @@ RUN INSTALL_PKGS="rh-python36-python-pip" && \
     yum $DISABLE_REPOS install -y $INSTALL_PKGS && \
     source scl_source enable rh-python36 && \
     scl enable rh-python36 bash && \
+    python3 -m pip install jmespath && \
+    python3 -m pip install lxml && \
+    python3 -m pip install pygithub && \
     python3 -m pip install ansible==$ANSIBLE_VERSION paramiko && \
     yum $DISABLE_REPOS clean all -y && \
     rm -rf /var/cache/yum
