@@ -39,6 +39,9 @@ objects:
       type: Git
     strategy:
       dockerStrategy:
+        env:
+          - name: BOOST_VERSION
+            value: ${BOOST_VERSION}        
         dockerfilePath: "${DOCKERFILE_PATH}"
         from:
           kind: DockerImage
@@ -80,5 +83,9 @@ parameters:
   displayName: Path to Dockerfile
   description: Path for alternate Dockerfile to use for build
   value: Dockerfile
+- name: BOOST_VERSION
+  displayName: The version of boost
+  description: This is the version for boost core that is installed on the image
+  value: latest  
 labels:
   template: build-pod-template

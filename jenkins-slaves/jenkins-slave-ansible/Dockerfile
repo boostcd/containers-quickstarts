@@ -10,8 +10,13 @@ LABEL com.redhat.component="jenkins-agent-ansible-ubi7-docker" \
       io.openshift.tags="openshift,jenkins,agent,ansible"
 
 ENV ANSIBLE_VERSION=2.8.2
+ENV DOWNLOAD_DIR=/usr/local/download
 
 ADD ubi.repo /etc/yum.repos.d/ubi.repo
+
+RUN mkdir -p ${DOWNLOAD_DIR} && \
+    curl -sLo- https://github.com/boostcd/boostcd/archive/${BOOST_VERSION}.tar.gz | tar xvz -C ${DOWNLOAD_DIR} && \ 
+    mv ${DOWNLOAD_DIR}/boostcd-${BOOST_VERSION} ${DOWNLOAD_DIR}/boostcd
 
 RUN INSTALL_PKGS="rh-python36-python-pip" && \
     DISABLE_REPOS=--disablerepo='rhel-*' && \
